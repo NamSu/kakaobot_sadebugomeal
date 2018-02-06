@@ -1,4 +1,5 @@
 import urllib.request
+import ssl
 from bs4 import BeautifulSoup
 
 # 타학교에서 이용시 수정
@@ -10,6 +11,7 @@ while sccode < 4:
     # NEIS에서 조식 파싱
     url = ('http://stu.' + regioncode + '/sts_sci_md01_001.do?schulCode=' + schulcode + '&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=' + str(sccode))
     try:
+        context = ssl._create_unverified_context()
         source = urllib.request.urlopen(url, timeout=3)
     except Exception as error:
         print(error)
